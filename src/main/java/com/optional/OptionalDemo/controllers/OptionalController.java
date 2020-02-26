@@ -16,8 +16,9 @@ public class OptionalController {
     @Autowired
     private OrderService orderService;
     @PostMapping("/addorder")
-    public  ResponseEntity<String> addOrder(@RequestBody Order order){
-        orderService.addOrder(order);
+    public  ResponseEntity<String> addOrder(@RequestBody(required=false) Order order){
+        Order optional= Optional.ofNullable(order).orElseThrow(()->new IllegalArgumentException("Please input argument"));
+        orderService.addOrder(optional);
         return ResponseEntity.ok("Order is added sucessfully to list");
     }
     @GetMapping("/orders")
@@ -29,6 +30,8 @@ public class OptionalController {
 
     @GetMapping("/fetchorderid/{orderName}")
     public ResponseEntity<Order> fetchOrderByOrderName(@RequestBody List<Order> orderList,@PathVariable("orderName") String  orderName){
+        Optional<String> optional = Optional.of("orderName");
+
         Order order = orderService.fetchOrderByOrderName(orderList,orderName);
         //Order order1 = order.orElseGet(() -> new Order(0l, "no order", 0.0));
         return  ResponseEntity.ok(order);
