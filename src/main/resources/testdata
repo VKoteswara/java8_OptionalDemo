@@ -1,0 +1,17 @@
+[
+    {
+        "orderId": 1001,
+        "orderName": "mobiles",
+        "price": 250000.0
+    },
+    {
+        "orderId": 1002,
+        "orderName": "tv",
+        "price": 250000.0
+    },
+    {
+        "orderId": 1003,
+        "orderName": "laptop",
+        "price": 250000.0
+    }
+]
