@@ -20,8 +20,7 @@ public class OptionalController {
        // Order optional = Optional.ofNullable(order).orElseThrow(() -> new IllegalArgumentException("Please check input argument"));
         Optional<Order> order1 = Optional.of(order);
         orderService.addOrder(order1.get());
-        return ResponseEntity.ok(order1.get());
-    }
+        return ResponseEntity.ok(order1.get()); }
 
     @GetMapping("/orders")
     public ResponseEntity<Optional<List<Order>>> getAllOrderList() {
@@ -31,10 +30,12 @@ public class OptionalController {
     }
 
     @GetMapping("/fetchorderid/{orderName}")
-    public ResponseEntity<Order> fetchOrderByOrderName(@RequestBody List<Order> orderList, @PathVariable(value = "orderName",required = false) String orderName) {
-        Optional<String> optional = Optional.ofNullable(orderName);
-        Order order = orderService.fetchOrderByOrderName(orderList, orderName);
-        return ResponseEntity.ok(order);
+    public ResponseEntity<Order> fetchOrderByOrderName(@RequestBody List<Order> orderList,@PathVariable("orderName") String  orderName){
+        Optional<String> optional = Optional.of("orderName");
+
+        Order order = orderService.fetchOrderByOrderName(orderList,orderName);
+        //Order order1 = order.orElseGet(() -> new Order(0l, "no order", 0.0));
+        return  ResponseEntity.ok(order);
     }
     @GetMapping("/fetchordername/{orderId}")
     public ResponseEntity<String> fetchOrderNameByOrderId(@RequestBody List<Order> orderList,@PathVariable("orderId") Long orderId){
