@@ -43,8 +43,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Map<String, List<Phone>> getPhoneNumbersForEachUser(List<User> userList) {
+        long l = System.currentTimeMillis();
+        System.out.println("Before method execution" + l);
         Map<String, List<Phone>> collect = userList.stream()
                 .collect(Collectors.toMap(user -> user.getFirstName(),user -> user.getPhones()));
+        System.out.println("After method execution with stream" + (System.currentTimeMillis()-l));
         return collect;
     }
 }
