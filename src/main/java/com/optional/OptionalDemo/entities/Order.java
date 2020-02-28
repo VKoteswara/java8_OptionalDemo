@@ -1,7 +1,9 @@
 package com.optional.OptionalDemo.entities;
 
 
-public class Order {
+import java.io.Serializable;
+
+public class Order implements Serializable {
     private Long orderId;
     private String orderName;
     private Double price;

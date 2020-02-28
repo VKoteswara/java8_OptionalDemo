@@ -9,4 +9,5 @@ public interface OrderService {
     public void addOrder(Order order);
     public Optional<List<Order>> getOrderList();
     public Order fetchOrderByOrderName(List<Order> orderList,String orderName);
+    public String fetchOrderNameByOrderId(List<Order> orderList, Long orderId);
 }
