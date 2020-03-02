@@ -11,9 +11,9 @@ public class User implements Serializable{
     String lastName;
     List<Phone> phones = new ArrayList<>();
 
-    /*public User() {
+    public User() {
         super();
-    }*/
+    }
 
     public User(Long userId, String firstName, String lastName, List<Phone> phones) {
         this.userId = userId;
